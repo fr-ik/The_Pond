@@ -5,22 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Pond</title>
   <style>      
- body, html {
+   body, html {
       width: 100%;
+      height: 100%;
       margin: 0;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       background-size: cover;
       background-repeat: repeat;
       background-position: center;
-      place-items: center; 
     }
-      
- canvas, html {
-   
-    } 
+
+    canvas {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      canvas {
+        width: 90%;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      canvas {
+        width: 100%;
+      }
+    }
 /* Mining pools, algae and floods, from the artificial broth a digital life is born.
 Aerial perspective isn’t tactical, invaders are no longer the enemy, guns do not kill anymore. */
 
@@ -185,6 +207,8 @@ nnnnnnnitxÆxÿøêæÆÆÆÆxt•ˆˆ•ûæÆÆênxÿÆÆÆÆÆêÆÆÆÆÆæ�
 
     const canvas = document.getElementById('gameCanvas');
     canvas.style.backgroundSize = 'cover' ;
+    canvas.width = window.innerWidth > 800 ? 800 : window.innerWidth;
+    canvas.height = canvas.width * 0.75; // Maintain aspect ratio
 
     const ctx = canvas.getContext('2d');
     const cellSize = 10; 
